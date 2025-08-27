@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>LYNQORA STORE</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* زر واتساب ثابت */
+    #whatsappBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 50px;
+      font-size: 18px;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 1000;
+    }
+    #whatsappBtn img {
+      width: 24px;
+      height: 24px;
+    }
+    /* المنتجات */
+    .product {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 15px;
+      text-align: center;
+      border-radius: 8px;
+      max-width: 250px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: inline-block;
+      vertical-align: top;
+    }
+    .product img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .whatsapp-button {
+      margin-top: 10px;
+      display: inline-block;
+      background-color: #25d366;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    header {
+      background-color: #0b1446; /* أزرق غامق جدا */
+      color: gold;
+      text-align: center;
+      padding: 20px;
+      font-family: "Arial", sans-serif;
+    }
+    header h1 {
+      font-size: 70px;
+      margin: 0;
+    }
+    header h2 {
+      margin: 5px 0 10px 0;
+      font-weight: normal;
+    }
+    header p {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1.2px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h2>L</h2>
+  <h3>LYNQORA STORE</h3>
+  <p>ملابس و اكسسوارات و الكترونيات بحالة ممتازة للبيع</p>
+</header>
+
+<div id="products"></div>
+
+<!-- زر واتساب ثابت -->
+<a
+  href="https://wa.me/212694109358?text=مرحبًا%20هل%20يمكنني%20إتمام%20الطلب%20الآن؟"
+  target="_blank"
+  rel="noopener"
+  id="whatsappBtn"
+>
+  <img
+    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+    alt="WhatsApp"
+  />
+  أتمم طلبك
+</a>
+
+<script>
+  const products = [
+    { id: 1, title: "Pochette Samsung a15", price: 60, image: "images2/img56.jpg" },
+    { id: 2, title: "Pochette Redni note 14", price: 60, image: "images2/img59.jpg" },
+    { id: 3, title: "TCL TV 32 pouces ", price: 800, image: "images2/img62.jpg" },
+    { id: 4, title: "Pack Pc portable", price: 1450, image: "images2/img41.jpg" },
+    { id: 5, title: "Chaussures femmes Gucci ", price: 80, image: "images2/img48.jpg" },
+    { id: 6, title: "فران شبه جديد ", price: 2000, image: "images2/img77.jpg" },
+    { id: 7, title: "SMART WATCH ", price: 200, image: "images2/img55.jpg" },
+    { id: 8, title: "T-shirt celio regular fit ", price: 60, image: "images2/img22.jpg" },
+    { id: 9, title: "Chemise homme Giorgio Armani bleu marine", price: 60, image: "images2/img16.jpg" },
+    { id: 10, title: "Chemise homme EDC by Esprit bleu-vert casual ", price: 60, image: "images2/img18.jpg" },
+    { id: 11, title: "Chemise homme Zara Man bleu clair élégante ", price: 60, image: "images2/img20.jpg" },
+    { id: 12, title: "Chemise homme en jean bleau classique ", price: 60, image: "images2/img24.jpg" },
+    { id: 13, title: "Manteau noir en laine  ", price: 60, image: "images2/img26.jpg" },
+    { id: 14, title: "Chaussures noires en cuir avec lacets", price: 50, image: "images2/img42.jpg" },
+    { id: 15, title: "Jean Wrangler foncé sur lit rayé", price: 50, image: "images2/img1.jpg" },
+    { id: 16, title: "Jean Wrangler bleu clair sur lit rayé", price: 50, image: "images2/img4.jpg" },
+    { id: 17, title: "Jean bleu classique", price: 50, image: "images2/img5.jpg" },
+    { id: 18, title: "Jean bleu ", price: 50, image: "images2/img7.jpg" },
+    { id: 19, title: "Pantalon Massimo Dutti ", price: 50, image: "images2/img9.jpg" },
+    { id: 20, title: "Jean bleu foncé GUESS ", price: 50, image: "images2/img11.jpg" },
+    { id: 21, title: "Pantalon Wrangler ", price: 50, image: "images2/img13.jpg" },
+    { id: 22, title: "Monteaau SUPERDRY ", price: 50, image: "images2/img28.jpg" }
+  ];
+
+  function renderProducts() {
+    const container = document.getElementById("products");
+    container.innerHTML = "";
+    products.forEach(p => {
+      const div = document.createElement("div");
+      div.className = "product";
+      const message = encodeURIComponent(`مرحبا، أريد أطلب: ${p.title}`);
+      div.innerHTML = `
+        <h4>${p.title}</h4>
+        <img src="${p.image}" alt="${p.title}" />
+        <p>السعر: $${p.price}</p>
+        <a href="https://wa.me/212694109358?text=${message}" target="_blank" class="whatsapp-button" rel="noopener">
+          اطلب هذا المنتج
+        </a>
+      `;
+      container.appendChild(div);
+    });
+  }
+
+  renderProducts();
+</script>
+
+</body>
+</html>
